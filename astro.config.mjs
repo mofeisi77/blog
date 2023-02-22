@@ -167,6 +167,7 @@ function pipeline() {
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
+  base: '/blog',
   markdown: {
     rehypePlugins: pipeline(),
     syntaxHighlight: 'prism',

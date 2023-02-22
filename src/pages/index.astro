@@ -4,6 +4,9 @@ import Tile from "../layouts/Tile.astro";
 import MoreTile from "../layouts/MoreTile.astro";
 const allPosts = await Astro.glob("../pages/posts/*.md");
 allPosts.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate));
+
+const BASE_URL =  import.meta.env.BASE_URL;
+
 ---
 
 <BaseLayout>
@@ -58,15 +61,17 @@ allPosts.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontma
         }
       </ul>
       <div class="view-archive-wrapper">
-        <a href="/archive" class="cta-primary-light" data-analytics-region="router" data-analytics-title="view archive">阅读历史文章</a>
+        <a href=`${BASE_URL}archive` class="cta-primary-light" data-analytics-region="router" data-analytics-title="view archive">阅读历史文章</a>
       </div>
     </div>
   </section>
 
   <script is:inline>
+     
+     let baseUrl = import.meta.env.BASE_URL 
     document.addEventListener("DOMContentLoaded", function () {
       var script = document.createElement("script");
-      script.src = "/static/js/animation.js";
+      script.src = `${baseUrl}static/js/animation.js`;
       document.head.appendChild(script);
 
       script.onload = function () {
